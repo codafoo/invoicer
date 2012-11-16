@@ -1,4 +1,7 @@
 class Consultant < ActiveRecord::Base
+  has_many :invoice_items
+  has_many :invoices, :through => :invoice_items
+
   attr_accessible :default_rate, :email, :name, :title
 
   validates :name, presence: true, uniqueness: true

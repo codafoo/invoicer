@@ -1,10 +1,10 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :customer_id, :desc, :discount, :due_date, :invoice_date, :paid_date, :short_desc, :term, :invoice_items_attributes
-
   belongs_to :customer
+  has_many :consultants, through: :invoice_items
   has_many :invoice_items
   accepts_nested_attributes_for :invoice_items, reject_if: :all_blank, allow_destroy: true
-  has_many :consultants, through: :invoice_items
+
+  attr_accessible :customer_id, :desc, :discount, :due_date, :invoice_date, :paid_date, :short_desc, :term, :invoice_items_attributes
 
   validates :customer_id, presence: true
   validates :short_desc, presence: true

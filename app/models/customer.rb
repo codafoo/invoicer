@@ -1,4 +1,7 @@
 class Customer < ActiveRecord::Base
+  has_many :invoices
+  has_many :invoice_items, :through => :invoice
+
   attr_accessible :default_discount, :default_term, :desc, :contact_email, :name, :contact_name
 
   validates :name, presence: true, uniqueness: true
