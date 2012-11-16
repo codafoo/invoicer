@@ -12,4 +12,8 @@ class Consultant < ActiveRecord::Base
   def self.options
     all.collect {|c| [c.name, c.id]}
   end
+
+  def total_billables
+    invoice_items.inject(0) { |total,item| total+=item.cost }
+  end
 end

@@ -44,11 +44,11 @@ class Invoice < ActiveRecord::Base
   end
 
   def total_hours
-    invoice_items.inject(0) {|result,item| result+=item.hours}
+    invoice_items.inject(0) {|total,item| total+=item.hours}
   end
 
   def total_cost
-    invoice_items.inject(0) {|result,item| result+=item.cost}
+    invoice_items.inject(0) {|total,item| total+=item.cost}
   end
 
   def final_cost

@@ -18,7 +18,9 @@
 %p
   %b Default term:
   = @customer.default_term
-
+%p
+  %b Total Billed:
+  = @customer.total_billed
 = link_to 'Edit', edit_customer_path(@customer)
 \|
 = link_to 'Back', customers_path

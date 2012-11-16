@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   has_many :invoices
-  has_many :invoice_items, :through => :invoice
+  has_many :invoice_items, :through => :invoices
 
   attr_accessible :default_discount, :default_term, :desc, :contact_email, :name, :contact_name
 
@@ -16,5 +16,9 @@ class Customer < ActiveRecord::Base
 
   def self.options
     all.collect {|c| [c.name, c.id]}
+  end
+
+  def total_billed
+    invoice_items.inject(0) { |total,item| total+=item.cost }
   end
 end
