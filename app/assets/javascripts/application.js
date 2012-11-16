@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
+//= require kendo/kendo.web.min
+//= require morris.min
+//= require raphael-min
 //= require_tree .
