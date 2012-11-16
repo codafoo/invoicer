@@ -1,0 +1,12 @@
+.row-fluid
+  .span8
+    - @customers.each (customer) =>
+      .well
+        %h1=  customer('name')
+        %hr
+        %p
+          = customer('desc')
+        %a.btn{:href => "#!/customers/#{customer.id()}/edit"} Edit
+.row-fluid
+  .span8
+    %a.btn{:href => "#!/customers/new"} New Customer

@@ -1,0 +1,26 @@
+.page-header
+  %h2 Listing Consultants
+
+%table.table
+  %tr
+    %th Name
+    %th Title
+    %th Email
+    %th Default rate
+    %th
+    %th
+    %th
+
+  - @consultants.each do |consultant|
+    %tr
+      %td= consultant.name
+      %td= consultant.title
+      %td= consultant.email
+      %td= consultant.default_rate
+      %td= link_to 'Show', consultant
+      %td= link_to 'Edit', edit_consultant_path(consultant)
+      %td= link_to 'Destroy', consultant, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+.btn= link_to 'New Consultant', new_consultant_path

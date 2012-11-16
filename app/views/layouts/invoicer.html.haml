@@ -1,0 +1,19 @@
+!!! 5
+%html
+  %head
+    %title> invoicer
+
+    :javascript
+      window.joosy = {
+        libraries: #{extract_sources_and_sizes_from_include_tag('invoicer')}
+      };
+
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    = javascript_include_tag 'invoicer_preloader'
+    #application
+      #preloader
+        Loading application...
+        %span#percents 0%

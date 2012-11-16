@@ -1,0 +1,7 @@
+%tr.nested-fields
+  %td= f.association :consultant, label: false
+  %td= f.input :desc, :label => false
+  %td= f.input :date, as: :string, label: false,input_html: {class: 'kendo-datepicker'}
+  %td= f.input :rate, label: false
+  %td= f.input :time, as: :string, label: false, input_html: {class: 'kendo-timepicker'}
+  %td= link_to_remove_association "Remove", f, class: 'btn'

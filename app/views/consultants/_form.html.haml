@@ -1,0 +1,16 @@
+= form_errors @consultant
+= form_for @consultant do |f|
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :default_rate
+    = f.text_field :default_rate
+  .actions
+    = f.submit 'Save', :class => 'btn'

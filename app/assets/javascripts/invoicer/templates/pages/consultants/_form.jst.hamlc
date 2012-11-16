@@ -1,0 +1,5 @@
+%form.well
+  %input.span6{:name => 'consultant[name]', :placeholder => 'Name'}
+  %input.span6{:name => 'consultant[email]', :placeholder => 'Email'}
+  %input.span6{:name => 'consultant[default_rate]', :placeholder => 'Default Rate'}
+  %input.btn.btn-success.span4{:type => 'submit', :value => 'Save'}

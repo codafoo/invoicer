@@ -1,0 +1,65 @@
+= link_to "<i class='icon-edit'>Edit</i>".html_safe, edit_invoice_path(@invoice), :class => 'btn'
+- if @invoice.status == 'Open'
+  = link_to "<i class='icon-truck'>Submit Invoice</i>".html_safe, submit_invoice_invoice_path(@invoice), :class => 'btn'
+.page-header
+  %h2
+    ="Invoice #{@invoice.id}"
+    %span.label="#{@invoice.status}"
+%p.lead
+  = @invoice.short_desc
+.row
+  .span6
+    %p
+      %strong From:
+      %br
+      = Invoice.from_address[:name]
+      %br
+      = Invoice.from_address[:address1]
+      %br
+      = Invoice.from_address[:city]
+      ,
+      = Invoice.from_address[:zip]
+    %p
+      %strong To:
+      %br
+      = @invoice.customer.name
+  .span6
+    %p
+      %b Invoice date:
+      = @invoice.invoice_date
+    %p
+      %b="Due (Net #{@invoice.term_days}):"
+      = @invoice.due_date
+%hr
+.row
+  .span12
+    -if @invoice.invoice_items.count > 0
+      %table.table
+        %thead
+          %tr
+            %th Consultant
+            %th Description
+            %th.align-right Rate
+            %th.align-right Time (hrs)
+            %th.align-right Cost
+        %tbody
+          - @invoice.invoice_items.each do |ii|
+            %tr
+              %td=ii.consultant.name
+              %td=ii.desc
+              %td.align-right=ii.rate
+              %td.align-right=ii.hours
+              %td.align-right=number_to_currency(ii.cost)
+        %tfoot
+          %tr
+            %td{:colspan => 3} Subtotal
+            %td.align-right=@invoice.total_hours
+            %td.align-right=number_to_currency(@invoice.total_cost)
+          %tr
+            %td{:colspan => 4}="Discount: #{@invoice.discount}%"
+            %td.align-right=number_to_currency(@invoice.discount_amount)
+          %tr
+            %td{:colspan => 4} Total
+            %td.align-right=number_to_currency(@invoice.final_cost)
+    -else
+      %h4 Please add invoice items

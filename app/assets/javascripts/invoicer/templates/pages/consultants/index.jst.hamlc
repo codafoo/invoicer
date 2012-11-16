@@ -1,0 +1,12 @@
+.row-fluid
+  .span8
+    - @consultants.each (consultant) =>
+      .well
+        %h1=  consultant('name')
+        %hr
+        %p
+          = consultant('title')
+          %a.btn{:href => "#!/consultants/#{consultant.id()}/edit"} Edit
+.row-fluid
+  .span8
+    %a.btn{:href => "#!/consultants/new"} New Consultant

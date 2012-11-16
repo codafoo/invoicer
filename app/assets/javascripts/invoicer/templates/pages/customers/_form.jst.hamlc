@@ -1,0 +1,6 @@
+%form.well
+  %input.span6{:name => 'customer[name]', :placeholder => 'Name'}
+  %input.span6{:name => 'customer[desc]', :placeholder => 'Desc'}
+  %input.span6{:name => 'customer[default_discount]', :placeholder => 'Default Discount'}
+  %input.span6{:name => 'customer[default_term]', :placeholder => 'Default Term'}
+  %input.btn.btn-success.span4{:type => 'submit', :value => 'Save'}

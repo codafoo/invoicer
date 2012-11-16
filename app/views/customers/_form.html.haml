@@ -1,0 +1,9 @@
+= form_errors(@customer)
+= simple_form_for @customer, :html => {:class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.input :contact_name, :label => 'Contact Name'
+  = f.input :contact_email, :label => 'Contact Email'
+  = f.input :desc, :label => 'Company Description'
+  = f.input :default_discount, :label => 'Default Discount'
+  = f.input :default_term, :label => 'Default Term'
+  = f.submit 'Save', :class => 'btn'

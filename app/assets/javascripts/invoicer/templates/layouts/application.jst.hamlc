@@ -1,0 +1,15 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.brand{:href => '#!/'}
+        Invoicer
+      %ul.nav
+        %li.divider-vertical
+        %li
+          %a{:href => '#!/consultants/'} Consultants
+        %li
+          %a{:href => '#!/customers/'} Customers
+
+.container-narrow{:id => @yield()}
+  #page{:style => 'text-align: center'}
+    .content{:id => @yield()}

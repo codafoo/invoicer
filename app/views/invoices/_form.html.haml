@@ -1,0 +1,47 @@
+= form_errors(@invoice)
+= simple_form_for @invoice do |f|
+  - if @invoice.new_record?
+    = f.association :customer
+  = f.input :short_desc, label: 'Short Description'
+  = f.input :desc, label: 'Description', input_html: { rows: 4 }
+  = f.input :discount
+  = f.input :term
+  %hr
+  %h4 Line Items
+  #invoice-items
+    %table.table
+      %thead
+        %tr
+          %th Consultant
+          %th Desc
+          %th Date
+          %th Rate
+          %th Time
+          %th Delete
+      %tbody#invoice-items-table
+        = f.simple_fields_for :invoice_items do |ii|
+          = render 'invoice_item_fields', f: ii
+    .links
+      = link_to_add_association 'Add Line Item', f, :invoice_items, {class: 'btn', 'data-association-insertion-node' => "tbody#invoice-items-table", 'data-association-insertion-method' => "append"}
+  = f.submit 'Save', class: 'btn'
+:javascript
+  $(document).ready(function(){
+    $(".kendo-datepicker").kendoDatePicker({
+      format: "yyyy-MM-dd"
+    });
+    $(".kendo-timepicker").kendoTimePicker({
+      format: "HH:mm",
+      parse_format: "HH:mm"
+    });
+    $('#invoice-items').bind('cocoon:after-insert',function(e,added_item){
+      $(".kendo-datepicker",added_item).kendoDatePicker({
+        value: new Date(),
+        format: "yyyy-MM-dd"
+
+      });
+      $(".kendo-timepicker",added_item).kendoTimePicker({
+        format: "HH:mm",
+        parse_format: "HH:mm"
+      });
+    });
+  });

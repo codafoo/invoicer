@@ -1,0 +1,6 @@
+- if model.errors.any?
+  #error_explanation.alert.alert-error
+    %strong= "#{pluralize(model.errors.count, "error")} prohibited this #{model.class.name} from being saved:"
+    %ul
+      - model.errors.full_messages.each do |msg|
+        %li= msg

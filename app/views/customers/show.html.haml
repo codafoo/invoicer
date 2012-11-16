@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @customer.name
+%p
+  %b Contact Name:
+  = @customer.contact_name
+%p
+  %b Contact Email:
+  = @customer.contact_email
+%p
+  %b Desc:
+  = @customer.desc
+%p
+  %b Default discount:
+  = @customer.default_discount
+%p
+  %b Default term:
+  = @customer.default_term
+
+= link_to 'Edit', edit_customer_path(@customer)
+\|
+= link_to 'Back', customers_path

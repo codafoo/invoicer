@@ -1,0 +1,8 @@
+= form_errors @invoice_item
+= simple_form_for @invoice_item do |f|
+  = f.input :desc
+  = f.input :date
+  = f.input :time, as: time
+  = f.input :rate
+  = f.input :item_type_id
+  = f.submit 'Save', class: 'btn'

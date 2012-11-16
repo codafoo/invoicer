@@ -1,0 +1,24 @@
+.page-header
+  %h1 Customers
+
+%table.table
+  %tr
+    %th Name
+    %th Contact Name
+    %th Contact Email
+    %th
+    %th
+    %th
+
+  - @customers.each do |customer|
+    %tr
+      %td= customer.name
+      %td= customer.contact_name
+      %td= customer.contact_email
+      %td= link_to 'Show', customer
+      %td= link_to 'Edit', edit_customer_path(customer)
+      %td= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+.btn= link_to 'New Customer', new_customer_path
