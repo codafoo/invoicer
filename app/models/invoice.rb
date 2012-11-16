@@ -18,9 +18,9 @@ class Invoice < ActiveRecord::Base
     all.collect {|c| ["#{c.id}: #{c.short_desc}", c.id]}
   end
 
-  def invoice_customer
+  def invoice_customer(override_date=Date.today)
     unless invoice_items.empty?
-      set_invoice_dates
+      set_invoice_dates(override_date)
       # Call Email to Customer
     else
       false
@@ -63,8 +63,8 @@ class Invoice < ActiveRecord::Base
       total_cost * discount/100 if discount
     end
 
-    def set_invoice_dates
-      self.invoice_date=Date.today
+    def set_invoice_dates(override_date)
+      self.invoice_date=override_date
       self.due_date=invoice_date + term_days
       save
     end
