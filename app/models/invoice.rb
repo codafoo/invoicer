@@ -20,10 +20,8 @@ class Invoice < ActiveRecord::Base
 
   def invoice_customer
     unless invoice_items.empty?
-      self.invoice_date=Date.today
-      self.due_date=invoice_date + term_days
-      # Call Email Customer
-      save
+      set_invoice_dates
+      # Call Email to Customer
     else
       false
     end
@@ -63,6 +61,12 @@ class Invoice < ActiveRecord::Base
   private
     def calculated_discount_amount
       total_cost * discount/100 if discount
+    end
+
+    def set_invoice_dates
+      self.invoice_date=Date.today
+      self.due_date=invoice_date + term_days
+      save
     end
 
     def set_final_costs
