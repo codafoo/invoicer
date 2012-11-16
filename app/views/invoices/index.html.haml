@@ -3,13 +3,9 @@
 
 %table.table
   %tr
-    %th Short desc
+    %th Invoice #
     %th Desc
-    %th Invoice date
-    %th Due date
-    %th Paid date
-    %th Discount
-    %th Term
+    %th Status
     %th Customer
     %th
     %th
@@ -17,14 +13,11 @@
 
   - @invoices.each do |invoice|
     %tr
+      %td= invoice.id
       %td= invoice.short_desc
-      %td= invoice.desc
-      %td= invoice.invoice_date
-      %td= invoice.due_date
-      %td= invoice.paid_date
-      %td= invoice.discount
-      %td= invoice.term
-      %td= invoice.customer_id
+      %td
+        %span.label= invoice.status
+      %td= invoice.customer.name
       %td= link_to 'Show', invoice
       %td= link_to 'Edit', edit_invoice_path(invoice)
       %td= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' }
